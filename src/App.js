@@ -164,9 +164,19 @@ function App() {
               </div>
 
               <div className="character-section">
-                <h3>👥 Relationships</h3>
-                <p>{character.relationships}</p>
-              </div>
+  <h3>👥 Relationships</h3>
+  {typeof character.relationships === 'string' ? (
+    <p>{character.relationships}</p>
+  ) : (
+    <ul className="abilities-list">
+      {Object.entries(character.relationships || {}).map(([name, relation], index) => (
+        <li key={index}>
+          <strong>{name}:</strong> {relation}
+        </li>
+      ))}
+    </ul>
+  )}
+</div>
 
               <div className="character-section">
                 <h3>🎮 Danmaku Style</h3>
